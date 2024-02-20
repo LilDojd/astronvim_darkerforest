@@ -6,9 +6,9 @@ return {
             "lua",
             "c",
             "python",
-            "rust",
             "vim",
             "xml",
+            "rust",
             "yaml"
         })
     end,

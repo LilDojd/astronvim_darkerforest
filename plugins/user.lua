@@ -25,5 +25,57 @@ return {
     {
         'wakatime/vim-wakatime',
         lazy = false
-    }
+    },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+            {
+                "lvimuser/lsp-inlayhints.nvim",
+                 opts = {}
+            },
+        },
+        ft = { 'rust' },
+        config = function()
+            vim.g.rustaceanvim = {
+                inlay_hints = {
+                    highlight = "NonText",
+                },
+                tools = {
+                    hover_actions = {
+                        auto_focus = true,
+                    },
+                },
+                server = {
+                    on_attach = function (client, bufnr)
+                        require("lsp-inlayhints").on_attach(client, bufnr)
+                    end
+                }
+            }
+        end
+        -- TODO: Remove this when 0.10.0 drops
+    },
+    {
+        'saecki/crates.nvim',
+        ft = {"toml"},
+        config = function()
+            require("crates").setup()
+        end,
+    },
+    {
+        "rust-lang/rust.vim",
+        ft = "rust",
+        init = function ()
+            vim.g.rustfmt_autosave = 1
+        end
+    },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        lazy = false,
+        config = function(_, opts)
+            require("nvim-dap-virtual-text").setup()
+        end
+    },
 }
