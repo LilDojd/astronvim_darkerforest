@@ -30,6 +30,15 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
+    ["<leader>db"] = {"<cmd> DapToggleBreakpoint <CR>", desc = "Toggle Breakpoint"},
+    ["<leader>dus"] = {
+      function ()
+        local widgets = require("dap.ui.widgets");
+        local sidebar = widgets.sidebar(widgets.scopes);
+        sidebar.toggle();
+      end,
+      name = "Toggle DAP Sidebar",
+    },
     -- quick save
     ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
