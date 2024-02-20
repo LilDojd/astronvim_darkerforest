@@ -27,39 +27,6 @@ return {
         lazy = false
     },
     {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "mfussenegger/nvim-dap",
-            {
-                "lvimuser/lsp-inlayhints.nvim",
-                 opts = {}
-            },
-        },
-        ft = { 'rust' },
-        keys = {
-            { "K", "<cmd>RustLsp hover actions<cr>", desc = "Show hover actions"}
-        },
-        config = function()
-            vim.g.rustaceanvim = {
-                server = {
-                    on_attach = function (client, bufnr)
-                        require("lsp-inlayhints").on_attach(client, bufnr)
-                    end
-                }
-            }
-        end
-        -- TODO: Remove this when 0.10.0 drops
-    },
-    {
-        'saecki/crates.nvim',
-        ft = {"toml"},
-        config = function()
-            require("crates").setup()
-        end,
-    },
-    {
         "rust-lang/rust.vim",
         ft = "rust",
         init = function ()
